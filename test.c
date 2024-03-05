@@ -5,68 +5,65 @@
 
 struct intNode
 {
-    int num;
-    struct intNode* nextPtr;
+    int data;
+    struct intNode* nextNode;
 };
 
 
-void linkedList_insert(struct intNode* head, int value) {   
+void linkedList_insert(struct intNode** head, int value) {
     struct intNode* newNode = malloc(sizeof(struct intNode));
 
     if (newNode == NULL) return;
 
-    newNode->num = value;
-    newNode->nextPtr = NULL;
+    newNode->data = value;
+    newNode->nextNode = NULL;
 
-    struct intNode* currentPtr = head;
-    struct intNode* before = NULL;
-    while (currentPtr != NULL){
-        before = currentPtr;
-        currentPtr = currentPtr->nextPtr;
+    struct intNode* currentNode = *head;
+    struct intNode* beforeNode = NULL;
+    while (currentNode != NULL){
+        beforeNode = currentNode;
+        currentNode = currentNode->nextNode;
     }
 
-    if (before == NULL) {
-        head = newNode;
+    if (beforeNode == NULL) {
+        *head = newNode;
     } else {
-        before->nextPtr = newNode;
+        beforeNode->nextNode = newNode;
     }
 }
 
 
+// void linkedList_print(struct intNode* head) {
+//     struct intNode* currentPtr = head;
+//     while (currentPtr != NULL) {
+//         printf("%d, ", currentPtr->data);
+//         currentPtr = currentPtr->nextNode;
+//     }putchar('\n');
+// }
+
 void linkedList_print(struct intNode* head) {
-    struct intNode* currentPtr = head;
-    while (currentPtr != NULL) {
-        printf("%d, ", currentPtr->num);
-        currentPtr = currentPtr->nextPtr;
-    }putchar('\n');
+    static int count = 0;
+    if (count == 0) {
+        printf("[");
+    }
+    if (head->nextNode == NULL) {
+        printf("%d] ¬\n", head->data);
+        return;
+    }
+    printf("%d]-> ", head->data);
+    linkedList_print(head->nextNode);
 }
 
 
 int main(void) {
 
-    struct intNode* head;
-    linkedList_insert(head, 0);
-    linkedList_insert(head, 1);
-    linkedList_insert(head, 2);
-    linkedList_insert(head, 3);
+    struct intNode* head = NULL;
+    linkedList_insert(&head, 0);
+    linkedList_insert(&head, 1);
+    linkedList_insert(&head, 2);
+    linkedList_insert(&head, 3);
 
     linkedList_print(head);
-
-    
-    return EXIT_SUCCESS;
-    struct intNode* one = malloc(sizeof(struct intNode));
-    struct intNode* two = malloc(sizeof(struct intNode));
-    struct intNode* three = malloc(sizeof(struct intNode));
-
-    one->num = 0;
-    two->num = 1;
-    three->num = 2;
-
-    one->nextPtr = two;
-    two->nextPtr = three;
-    three->nextPtr = NULL;
-
-    linkedList_print(one);
 
     return 0;
 }

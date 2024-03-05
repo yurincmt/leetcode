@@ -1,18 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void change_addr(int** a, int* b) {
+    *a = b;
+}
+
 int main(int argc, char const *argv[])
 {
-    // char* name[4] = {"a", "bc", "def", "ghij"};
+    int arr[4] = {0};
+    int* ptr = arr;
+    char* nick = "thrxshxll";
 
-    char** name;
+    // printf("%d ", *ptr);
+    // ptr++;
+    // printf("%d ", *ptr);
+    // ptr++;
+    // printf("%d ", *ptr);
+    // return 0;
 
-    name = malloc(4 * sizeof(char*));
-
-    name[0] = malloc(5 * sizeof(char));
-    name[1] = malloc(5 * sizeof(char));
-    name[2] = malloc(5 * sizeof(char));
-    name[3] = malloc(5 * sizeof(char));
+    while (*nick != '\0') {
+        // printf("%d ", *ptr);
+        putchar(*nick);
+        nick++;
+    }
     
     return 0;
 }
