@@ -57,13 +57,7 @@ void linkedList_print(struct intNode* head) {
 
 int main(void) {
 
-    struct intNode* head = NULL;
-    linkedList_insert(&head, 0);
-    linkedList_insert(&head, 1);
-    linkedList_insert(&head, 2);
-    linkedList_insert(&head, 3);
-
-    linkedList_print(head);
+    
 
     return 0;
 }
